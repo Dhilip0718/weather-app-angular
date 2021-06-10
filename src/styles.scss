@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+/* Application-wide Styles */
+h1 {
+    color: #369;
+    font-family: Roboto, Helvetica, sans-serif;
+    font-size: 250%;
+  }
+  h2, h3, h5 {
+    color: #444;
+    font-family: Roboto, Helvetica, sans-serif;
+  }
+  body {
+    background-image: linear-gradient(#7183ad, #73b3d6, #f3f9fb);
+    background-repeat: no-repeat;
+    height: 100%;
+  }
+  body, input[type="text"], button {
+    color: #333;
+    font-family: Cambria, Georgia, serif;
+  }
+  html {
+    min-height: 100%;
+  }
+  /* everywhere else */
+  * {
+    font-family: Roboto, Helvetica, sans-serif;
+  }
+  @import "~bootstrap/dist/css/bootstrap.css"

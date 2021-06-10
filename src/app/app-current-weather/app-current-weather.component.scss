@@ -1,0 +1,68 @@
+.container {
+  .row {
+    display: flex;
+    justify-content: space-between;
+
+    h6 {
+      color: white;
+      font-size: 18px;
+      font-weight: 400;
+      padding: 1rem 0;
+    }
+
+    .location-container {
+      cursor: pointer;
+      padding: 12px;
+      box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+        0 1px 3px 0 rgb(0 0 0 / 12%);
+      background-image: linear-gradient(#046f94, #3493ad);
+      color: white;
+      border-radius: 3px;
+
+      header {
+        h5 {
+          font-size: 16px;
+          font-weight: 500;
+          color: white;
+        }
+      }
+
+      .temperature-info {
+        span {
+          font-size: 48px;
+          font-weight: 300;
+          &.feel-temp {
+            font-size: 16px;
+          }
+          &.description {
+            font-size: 16px;
+          }
+          img {
+            max-width: 3rem;
+          }
+        }
+      }
+
+      .additional-info {
+        h6 {
+          font-size: 12px;
+          font-weight: 300;
+          text-align: center;
+        }
+        span {
+          text-align: center;
+          display: block;
+        }
+      }
+
+      button {
+        border-radius: 6px;
+        background: center;
+        margin: 8px;
+      }
+    }
+  }
+}
+.hide {
+  display: none;
+}

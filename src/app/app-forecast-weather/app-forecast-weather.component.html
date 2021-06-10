@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="row">
+    <header>
+      <h6>Hourly Forecast</h6>
+    </header>
+  </div>
+  <div *ngFor="let hour of foreCastDetails" class="row mt-3">
+    <h6 *ngIf="hour.isDayStart">{{ hour.dt * 1000 | date }}</h6>
+    <div class="forecast-container">
+      <div class="col-md-4 dtls-box">
+        <span>{{ hour.dt * 1000 | date: "shortTime" }}</span>
+        <span>{{ hour.temp | number: "0.1-1" }} &deg;</span>
+      </div>
+      <div class="col-md-4 dtls-box">
+        <span>{{ hour.feels_like | number: "0.1-1" }} &deg;</span>
+        <span>{{ hour.humidity }}</span>
+      </div>
+      <div class="col-md-4 dtls-box">
+        <span class="p-4">{{ hour.weather[0].description }}</span>
+        <img
+          src="http://openweathermap.org/img/wn/{{
+            hour.weather[0].icon
+          }}@2x.png"
+        />
+      </div>
+    </div>
+  </div>
+</div>
