@@ -23,7 +23,7 @@ export class FetchWeatherDetailsService {
   apiKey: string;
 
   constructor(private http: HttpClient) {
-    this.currentDay = new Date().getDate();
+    this.initializeCurrentDay();
     this.apiKey = environment.apiKey;
   }
   getWeatherDetails(): Observable<CurrentWeatherDetails>[] {
@@ -45,6 +45,7 @@ export class FetchWeatherDetailsService {
   */
   getForecast(lat: number, lon: number): Observable<WeatherDetails[]> {
     const apiUrl = environment.hourlyForecastApiUrl;
+    this.initializeCurrentDay();
     const response = this.http.get<WeatherForecastDetails>(
       `${apiUrl}lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,daily,alerts&appid=${this.apiKey}`
     )
@@ -69,5 +70,9 @@ export class FetchWeatherDetailsService {
       return true;
     }
     return false;
+  }
+
+  private initializeCurrentDay(): void {
+    this.currentDay = new Date().getDate();
   }
 }
