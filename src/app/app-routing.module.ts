@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppCurrentWeatherComponent } from './app-current-weather/app-current-weather.component';
 
 const routes: Routes = [
-  { path: 'currentWeather', component: AppCurrentWeatherComponent }
+  { path: 'home', component: AppCurrentWeatherComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' } // redirect to /home AppCurrentWeatherComponent
 ];
 
 @NgModule({

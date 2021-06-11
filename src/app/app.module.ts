@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,8 +18,8 @@ import { FetchWeatherDetailsService } from '../app/services/fetch-weather-detail
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // Import HttpClient Module to make HTTP requests.
-    HttpClientModule
+    HttpClientModule, // Import HttpClient Module to make HTTP requests.
+    FontAwesomeModule // Import FontAwesome for icons.
   ],
   providers: [FetchWeatherDetailsService],
   bootstrap: [AppComponent]

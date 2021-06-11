@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { FetchWeatherDetailsService } from './fetch-weather-details.service';
-import { WeatherForecastDetails } from '../model/weatherForecastDetails';
+import { WeatherDetails } from '../model/weatherInfo';
 
 describe('FetchWeatherDetailsService', () => {
   let fetchWeatherDetailsService: FetchWeatherDetailsService;
@@ -27,15 +27,15 @@ describe('FetchWeatherDetailsService', () => {
   });
 
   it('should invoke getForecast and provide response', () => {
-    const returnValue = {
-      lat: 51.5085,
-      lon: 51.5085,
-      hourly: [
-        {
-          temp: 27.99
-        }
-      ]
-    } as WeatherForecastDetails;
+    const returnValue = [
+      {
+        temp: 27.99
+      },
+      {
+        temp: 27.99
+      }
+    ] as WeatherDetails[];
+
     fetchWeatherDetailsService.getForecast(51.5085, 51.5085).subscribe(res => {
       expect(res).toBe(returnValue);
     });

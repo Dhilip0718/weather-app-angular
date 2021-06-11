@@ -1,35 +1,51 @@
 <div class="container">
-    <div class="row">
-        <header>
-            <h6>Top Cities</h6>
-        </header>
-    </div>
-    <div class="row">
-        <div *ngFor="let city of weatherDetails" class="location-container col-md-2"
-        (click)="invokeForecast(city.coord.lat,city.coord.lat)">
-            <header>
-                <h5>{{city.name}}</h5>
-            </header>
-            <div class="row temperature-info">
-                <div>
-                    <span>{{city.main.temp | number: '0.1-1'}} &deg;</span>
-                    <span class="feel-temp">{{city.main.feels_like | number: '0.1-1'}} &deg;</span>
-                    <span>
-                        <img src="http://openweathermap.org/img/wn/{{city.weather[0].icon}}@2x.png"></span>
-                        <span class="description">{{city.weather[0].description}}</span>
-                </div>
-            </div>
-            <div class="row additional-info">
-                <div class="col-md-6">
-                    <h6>W/Speed</h6>
-                    <span>{{city.wind.speed}}</span>
-                </div>
-                <div class="col-md-6">
-                    <h6>Humidity</h6>
-                    <span>{{city.main.humidity}}</span>
-                </div>
-            </div>
+  <div class="row">
+    <header>
+      <h6>Top Cities</h6>
+    </header>
+  </div>
+  <div class="row">
+    <div
+      *ngFor="let city of weatherDetails"
+      class="location-container col-md-2"
+      [ngClass]="{highlight: isActive(city.name)}"
+      (click)="invokeForecast(city.coord.lat, city.coord.lon, city.name)"
+    >
+      <header>
+        <h5>{{ city.name }}</h5>
+      </header>
+      <div class="row temperature-info">
+        <div>
+          <span>{{ city.main.temp | number: "0.1-1" }} &deg;</span>
+          <span class="feel-temp">{{ city.main.feels_like | number: "0.1-1" }} &deg;</span>
         </div>
+        <div class="add-info">
+          <span>
+            <img
+              src="http://openweathermap.org/img/wn/{{
+                city.weather[0].icon
+              }}@2x.png"
+          /></span>
+          <span class="description">{{ city.weather[0].description | titlecase}}</span>
+        </div>
+      </div>
+      <div class="row additional-info">
+        <div class="col-md-6">
+          <h6>
+            W/Speed
+          </h6>
+          <span> {{ city.wind.speed }} mt/s</span>
+        </div>
+        <div class="col-md-6">
+          <h6>Humidity</h6>
+          <span>{{ city.main.humidity }} %</span>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<app-app-forecast-weather *ngIf="foreCastDetails" [foreCastDetails]="foreCastDetails"></app-app-forecast-weather>
+<app-forecast-weather
+  *ngIf="foreCastDetails"
+  [foreCastDetails]="foreCastDetails"
+  [cityName]="currentCityName"
+></app-forecast-weather>

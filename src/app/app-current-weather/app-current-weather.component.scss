@@ -13,11 +13,15 @@
     .location-container {
       cursor: pointer;
       padding: 12px;
-      box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
-        0 1px 3px 0 rgb(0 0 0 / 12%);
+      box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
       background-image: linear-gradient(#046f94, #3493ad);
       color: white;
       border-radius: 3px;
+
+      &.highlight {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        border-bottom: 6px solid white;
+      }
 
       header {
         h5 {
@@ -28,6 +32,14 @@
       }
 
       .temperature-info {
+        display: flex;
+        flex-direction: column;
+
+        .add-info {
+          display: flex;
+          align-items: center;
+          padding: 8px;
+        }
         span {
           font-size: 48px;
           font-weight: 300;
@@ -36,6 +48,8 @@
           }
           &.description {
             font-size: 16px;
+            padding: 8px;
+            margin-top: 6px;
           }
           img {
             max-width: 3rem;
@@ -62,7 +76,4 @@
       }
     }
   }
-}
-.hide {
-  display: none;
 }
