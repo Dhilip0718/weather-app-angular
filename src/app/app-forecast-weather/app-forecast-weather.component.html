@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row">
     <header>
-      <h6>Hourly Forecast</h6>
+      <h6>Hourly Forecast for {{ cityName }}</h6>
     </header>
   </div>
   <div *ngFor="let hour of foreCastDetails" class="row mt-3">
@@ -22,12 +22,13 @@
         </span>
       </div>
       <div class="col-md-4 dtls-box">
-        <span class="p-4">{{ hour.weather[0].description | titlecase}}</span>
-        <img
+        <div>
+          <img
           class="weather-mood" src="http://openweathermap.org/img/wn/{{
             hour.weather[0].icon
-          }}@2x.png"
-        />
+          }}@2x.png"/>
+          <span class="p-4">{{ hour.weather[0].description | titlecase}}</span>
+        </div>        
       </div>
     </div>
   </div>

@@ -18,9 +18,8 @@ import { FetchWeatherDetailsService } from '../app/services/fetch-weather-detail
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // Import HttpClient Module to make HTTP requests.
-    HttpClientModule,
-    FontAwesomeModule
+    HttpClientModule, // Import HttpClient Module to make HTTP requests.
+    FontAwesomeModule // Import FontAwesome for icons.
   ],
   providers: [FetchWeatherDetailsService],
   bootstrap: [AppComponent]

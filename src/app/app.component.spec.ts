@@ -20,12 +20,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-weather-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-weather-app');
-  });
-
   it('should contain Weather Application heading in app comp', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

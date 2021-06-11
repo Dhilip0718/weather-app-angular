@@ -8,7 +8,7 @@
     <div
       *ngFor="let city of weatherDetails"
       class="location-container col-md-2"
-      (click)="invokeForecast(city.coord.lat, city.coord.lat)"
+      (click)="invokeForecast(city.coord.lat, city.coord.lon, city.name)"
     >
       <header>
         <h5>{{ city.name }}</h5>
@@ -16,9 +16,7 @@
       <div class="row temperature-info">
         <div>
           <span>{{ city.main.temp | number: "0.1-1" }} &deg;</span>
-          <span class="feel-temp"
-            >{{ city.main.feels_like | number: "0.1-1" }} &deg;</span
-          >
+          <span class="feel-temp">{{ city.main.feels_like | number: "0.1-1" }} &deg;</span>
         </div>
         <div class="add-info">
           <span>
@@ -34,12 +32,8 @@
         <div class="col-md-6">
           <h6>
             W/Speed
-            <fa-icon class="p-2" [icon]="faWind"></fa-icon>
           </h6>
-          <div class="d-flex justify-content-evenly">
-            <span> {{ city.wind.speed }}</span>
-            <span>mt/s</span>
-          </div>
+          <span> {{ city.wind.speed }} mt/s</span>
         </div>
         <div class="col-md-6">
           <h6>Humidity</h6>
@@ -52,4 +46,5 @@
 <app-app-forecast-weather
   *ngIf="foreCastDetails"
   [foreCastDetails]="foreCastDetails"
+  [cityName]="currentCityName"
 ></app-app-forecast-weather>

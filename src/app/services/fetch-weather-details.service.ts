@@ -10,6 +10,18 @@ import { CurrentWeatherDetails, WeatherDetails, WeatherForecastDetails } from '.
 @Injectable({
   providedIn: 'root'
 })
+
+/*
+
+  FetchWeeatherDetails service to make the below api calls:
+  1. getWeatherDetails - To iterate thorough the list of provided cities and
+     make the api call to openweather endpoint and return an array of Observable.
+
+  2. getForecastDetails -  The latitude and longitude of the selected city is passed as an argument with
+     which we make the api call.
+
+*/
+
 export class FetchWeatherDetailsService {
   currentDay: number;
   constructor(private http: HttpClient) {
@@ -27,6 +39,12 @@ export class FetchWeatherDetailsService {
     return response;
   }
 
+  /*
+     getForecast - The latitude and longitude of the selected city is passed as an argument with
+     which we make the api call.
+     Inorder to avoid displaying date for every result record, we are performing few additional checks
+     using pipe to achieve the goal.
+  */
   getForecast(lat: number, lon: number): Observable<WeatherDetails[]> {
     const apiKey = environment.apiKey;
     const apiUrl = environment.hourlyForecastApiUrl;
@@ -44,7 +62,10 @@ export class FetchWeatherDetailsService {
     return response;
   }
 
-  isDayStart(timestamp: number): boolean {
+  /*
+  isDayStart - Is used to hide the repeated occurence of current Date and future dates.
+  */
+  private isDayStart(timestamp: number): boolean {
     const inputDay = new Date(timestamp * 1000).getDate();
     if (this.currentDay === inputDay) {
       this.currentDay++;

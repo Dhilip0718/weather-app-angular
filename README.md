@@ -28,3 +28,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Component Spec
+
+On ng serve the web app loads and auto redirects to /home path http://localhost:4200/home.
+
+Parent component - app-current-weather
+The component loads the weather details of top 5 Europiean cities.
+Additional information about the component is provided as comments in the component.
+
+Child Component - app-forecast-weather
+Action: User makes a selection among the 5 EU cities.
+Display: Hourly forecast is displayed for the next three days for the selected city.
+Additional information about the component is provided as comments in the component.
+
