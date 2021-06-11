@@ -21,10 +21,10 @@ describe('FetchWeatherDetailsService', () => {
     expect(fetchWeatherDetailsService).toBeTruthy();
   });
 
-  // it('should invoke getWeatherDetails and give response with 5 Observables', () => {
-  //   const weatherDetails = fetchWeatherDetailsService.getWeatherDetails();
-  //   expect(weatherDetails.length).toBe(5);
-  // });
+  it('should invoke getWeatherDetails and give response with 5 Observables', () => {
+    const weatherDetails = fetchWeatherDetailsService.getWeatherDetails();
+    expect(weatherDetails.length).toBe(5);
+  });
 
   it('should invoke getForecast and provide response', () => {
     const returnValue = [

@@ -7,13 +7,9 @@ import { environment } from '../../environments/environment';
 
 import { CurrentWeatherDetails, WeatherDetails, WeatherForecastDetails } from '../model/weatherInfo';
 
-@Injectable({
-  providedIn: 'root'
-})
-
 /*
 
-  FetchWeeatherDetails service to make the below api calls:
+  FetchWeatherDetails service to make the below api calls:
   1. getWeatherDetails - To iterate thorough the list of provided cities and
      make the api call to openweather endpoint and return an array of Observable.
 
@@ -21,19 +17,21 @@ import { CurrentWeatherDetails, WeatherDetails, WeatherForecastDetails } from '.
      which we make the api call.
 
 */
-
+@Injectable()
 export class FetchWeatherDetailsService {
   currentDay: number;
+  apiKey: string;
+
   constructor(private http: HttpClient) {
     this.currentDay = new Date().getDate();
-   }
+    this.apiKey = environment.apiKey;
+  }
   getWeatherDetails(): Observable<CurrentWeatherDetails>[] {
-    const apiKey = environment.apiKey;
     const cityList = environment.cityList;
-    const apiUrl = environment.currentForecastApiUrl;
+    const apiUrl = environment.currentWeatherApiUrl;
     const response = cityList.map((city) =>
       this.http.get<CurrentWeatherDetails>(
-        `${apiUrl}q=${city}&units=metric&appid=${apiKey}`
+        `${apiUrl}q=${city}&units=metric&appid=${this.apiKey}`
       )
     );
     return response;
@@ -46,16 +44,15 @@ export class FetchWeatherDetailsService {
      using pipe to achieve the goal.
   */
   getForecast(lat: number, lon: number): Observable<WeatherDetails[]> {
-    const apiKey = environment.apiKey;
     const apiUrl = environment.hourlyForecastApiUrl;
     const response = this.http.get<WeatherForecastDetails>(
-      `${apiUrl}lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,daily,alerts&appid=${apiKey}`
+      `${apiUrl}lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,daily,alerts&appid=${this.apiKey}`
     )
     .pipe(
       mergeMap(res => res.hourly),
-      map(hour => {
-        hour.isDayStart = this.isDayStart(hour.dt);
-        return hour;
+      map(hourly => {
+        hourly.isDayStart = this.isDayStart(hourly.dt);
+        return hourly;
       }),
       toArray()
     );
@@ -63,7 +60,7 @@ export class FetchWeatherDetailsService {
   }
 
   /*
-  isDayStart - Is used to hide the repeated occurence of current Date and future dates.
+    isDayStart - Is used to hide the repeated occurence of current Date and future dates.
   */
   private isDayStart(timestamp: number): boolean {
     const inputDay = new Date(timestamp * 1000).getDate();

@@ -8,6 +8,7 @@
     <div
       *ngFor="let city of weatherDetails"
       class="location-container col-md-2"
+      [ngClass]="{highlight: isActive(city.name)}"
       (click)="invokeForecast(city.coord.lat, city.coord.lon, city.name)"
     >
       <header>
@@ -43,8 +44,8 @@
     </div>
   </div>
 </div>
-<app-app-forecast-weather
+<app-forecast-weather
   *ngIf="foreCastDetails"
   [foreCastDetails]="foreCastDetails"
   [cityName]="currentCityName"
-></app-app-forecast-weather>
+></app-forecast-weather>

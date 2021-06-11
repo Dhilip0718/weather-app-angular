@@ -5,12 +5,13 @@ import { faWind } from '@fortawesome/free-solid-svg-icons';
 import { FetchWeatherDetailsService } from '../services/fetch-weather-details.service';
 import { CurrentWeatherDetails, WeatherDetails } from '../model/weatherInfo';
 
-/* The parent component which invokes fetchWeatherDetailsService on Onload hook and
-returns an observable array and the same is used to display weather details of top 5 Eu cities
+/*
+  The parent component which invokes fetchWeatherDetailsService on Onload hook and
+  returns an observable array and the same is used to display weather details of top 5 Eu cities
 */
 
 @Component({
-  selector: 'app-app-current-weather',
+  selector: 'app-current-weather',
   templateUrl: './app-current-weather.component.html',
   styleUrls: ['./app-current-weather.component.scss']
 })
@@ -43,6 +44,10 @@ export class AppCurrentWeatherComponent implements OnInit {
         this.currentCityName = cityName;
         this.foreCastDetails = response;
       });
+  }
+
+  isActive(cityName: string): boolean {
+    return cityName === this.currentCityName;
   }
 }
 
